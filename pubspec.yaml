@@ -44,6 +44,7 @@ dependencies:
   url_strategy:
   flutter_hooks: ^0.20.5
   hooks_riverpod: ^2.6.1
+  firebase_auth: ^5.4.0
 
 dev_dependencies:
   flutter_test:
