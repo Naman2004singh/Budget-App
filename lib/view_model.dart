@@ -9,6 +9,7 @@ final viewModel = ChangeNotifierProvider.autoDispose<ViewModel>(
 class ViewModel extends ChangeNotifier {
   final _auth = FirebaseAuth.instance;
   bool isSignedIn = false;
+  bool isObscure = true;
 
   // check if the user is signed in
   Future<void> isLoggedIn() async {
