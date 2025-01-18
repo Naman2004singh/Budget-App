@@ -8,13 +8,16 @@ class Textfields extends StatelessWidget {
   final TextEditingController editingController;
   final String hintText;
   final bool isObstacle;
+  final suffixIcon;
   const Textfields(
       {super.key,
       required this.keyboardtype,
       required this.textAlign,
       required this.editingController,
       required this.prefixIcon,
-      required this.hintText, required this.isObstacle});
+      required this.hintText,
+      required this.isObstacle,
+      this.suffixIcon});
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +29,12 @@ class Textfields extends StatelessWidget {
       decoration: InputDecoration(
           enabledBorder:
               OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
-          focusedBorder:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: BorderSide(width: 2.0)),
           prefixIcon: prefixIcon,
           hintText: hintText,
+          suffixIcon: suffixIcon,
           hintStyle: GoogleFonts.openSans()),
     );
   }
