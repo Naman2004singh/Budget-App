@@ -14,7 +14,7 @@ class ViewModel extends ChangeNotifier {
   bool isObscure = true;
   var logger = Logger();
 
-  // check if the user is signed in
+  // check if the user is signed in or signed out
   Future<void> isLoggedIn() async {
     await _auth.authStateChanges().listen((User? user) {
       if (user == null) {
@@ -32,6 +32,7 @@ class ViewModel extends ChangeNotifier {
   }
 
   //Authentication
+  //Register new user
   Future<void> RegisterUser(
       BuildContext context, String email, String password) async {
     await _auth
@@ -41,5 +42,22 @@ class ViewModel extends ChangeNotifier {
       logger.d("Registration error:$error");
       DialogBox(context, error.toString().replaceAll(RegExp('\\[.*?\\]'), ''));
     });
+  }
+
+  //Login the user
+  Future<void> LoginUser(
+      BuildContext context, String email, String password) async {
+    await _auth
+        .signInWithEmailAndPassword(email: email, password: password)
+        .then(
+          (value) => logger.d("Login successgul"),
+        )
+        .onError(
+      (error, stackTrace) {
+        logger.d("Login error: $error");
+        DialogBox(
+            context, error.toString().replaceAll(RegExp('\\[.*?\\]'), ''));
+      },
+    );
   }
 }

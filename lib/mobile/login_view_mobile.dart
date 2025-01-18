@@ -1,3 +1,4 @@
+import 'package:budget_app/components/materialButton.dart';
 import 'package:budget_app/components/textFields.dart';
 import 'package:budget_app/components/textTheme.dart';
 import 'package:budget_app/view_model.dart';
@@ -76,24 +77,34 @@ class LoginViewMobile extends HookConsumerWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                // Registration button
+                SizedBox(
+                    height: 50.0,
+                    width: 150.0,
+                    child: Materialbutton(
+                        onpressFunction: () async {
+                          await viewModelProvider.RegisterUser(context,
+                              _emailController.text, _passwordController.text);
+                        },
+                        buttontext: "Register",
+                        textSize: 25)),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Pacifico(text: "OR", size: 15.0),
+                SizedBox(
+                  width: 20.0,
+                ),
                 SizedBox(
                   height: 50.0,
-                  width: 150.0,
-                  child: MaterialButton(
-                    onPressed: () async {
-                      await viewModelProvider.RegisterUser(context,
-                          _emailController.text, _passwordController.text);
-                    },
-                    splashColor: Colors.grey,
-                    color: Colors.black,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)),
-                    child: OpenSans(
-                      text: "Register",
-                      size: 25.0,
-                      color: Colors.white,
-                    ),
-                  ),
+                  width: 350.0,
+                  child: Materialbutton(
+                      onpressFunction: () async {
+                        await viewModelProvider.LoginUser(context,
+                            _emailController.text, _passwordController.text);
+                      },
+                      buttontext: "Login",
+                      textSize: 25),
                 )
               ],
             )
