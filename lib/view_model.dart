@@ -104,4 +104,9 @@ class ViewModel extends ChangeNotifier {
       },
     );
   }
+
+  //Logout
+  Future<void> logout() async {
+    await _auth.signOut();
+  }
 }

@@ -1,3 +1,5 @@
+import 'package:budget_app/components/appBar.dart';
+import 'package:budget_app/components/drawer.dart';
 import 'package:budget_app/view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -11,6 +13,11 @@ class ExpenseViewMobile extends HookConsumerWidget {
     int totalExpense = 0;
     int totalIncome = 0;
     int budgetLeft = totalIncome - totalExpense;
-    return SafeArea(child: Scaffold());
+    return SafeArea(
+        child: Scaffold(
+      appBar: PreferredSize(
+          preferredSize: Size(deviceWidth, 55.0), child: MyAppbar()),
+      drawer: MyDrawer(),
+    ));
   }
 }
