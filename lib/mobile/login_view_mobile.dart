@@ -6,7 +6,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:sign_in_button/sign_in_button.dart';
+import 'package:sign_button/create_button.dart';
+import 'package:sign_button/sign_button.dart';
 
 class LoginViewMobile extends HookConsumerWidget {
   @override
@@ -108,15 +109,23 @@ class LoginViewMobile extends HookConsumerWidget {
                       buttontext: "Login",
                       textSize: 25),
                 ),
-                SizedBox(height: 30.0,),
-                SignInButton(
-                   Buttons.google,
-                   onPressed: () async{
-                    if (kIsWeb) {
-                      
-                    }
-                   },)
               ],
+            ),
+            SizedBox(
+              height: 30.0,
+            ),
+            SignInButton(
+              buttonType: ButtonType.google,
+              btnColor: Colors.black,
+              btnTextColor: Colors.white,
+              buttonSize: ButtonSize.medium,
+              onPressed: () async {
+                if (kIsWeb) {
+                  viewModelProvider.googleSignInWeb(context);
+                } else {
+                  viewModelProvider.googleSignInMobile(context);
+                }
+              },
             )
           ],
         ),

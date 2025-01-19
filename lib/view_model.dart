@@ -72,4 +72,31 @@ class ViewModel extends ChangeNotifier {
         "Current user is not empty = ${_auth.currentUser!.uid.isNotEmpty}"); // return T/F if user is empty or not
   }
 
+  // Google signIn app
+  Future<void> googleSignInMobile(BuildContext context) async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn()
+        .signIn()
+        .onError(
+          (error, stackTrace) => DialogBox(
+              context, error.toString().replaceAll(RegExp('\\[.*?\\]'), '')),
+        );
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // connecting the firebase database with the google signIn
+    final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+
+    await _auth.signInWithCredential(credential).then(
+      (value) {
+        logger.d("Google SignIn successful");
+      },
+    ).onError(
+      (error, stackTrace) {
+        logger.d("Google signIn error = $error");
+        DialogBox(
+            context, error.toString().replaceAll(RegExp('\\[.*?\\]'), ''));
+      },
+    );
+  }
 }
