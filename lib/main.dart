@@ -33,7 +33,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Budget App",
-      home: ResponsiveHandler(),
+      // home: ResponsiveHandler(),
+      home: ExpenseViewMobile(),
     );
   }
 }
