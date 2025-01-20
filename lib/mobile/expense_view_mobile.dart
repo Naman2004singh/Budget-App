@@ -1,5 +1,6 @@
 import 'package:budget_app/components/appBar.dart';
 import 'package:budget_app/components/drawer.dart';
+import 'package:budget_app/components/materialButton.dart';
 import 'package:budget_app/components/totalOutput.dart';
 import 'package:budget_app/model.dart';
 import 'package:budget_app/view_model.dart';
@@ -48,6 +49,21 @@ class ExpenseViewMobile extends HookConsumerWidget {
           ),
           SizedBox(
             height: 40.0,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(
+                height: 40.0,
+                width: 155.0,
+                child: Materialbutton(
+                    onpressFunction: () async {
+                      
+                    },
+                    buttontext: "+  Add Expense",
+                    textSize: 18.0),
+              )
+            ],
           )
         ],
       ),

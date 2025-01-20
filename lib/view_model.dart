@@ -1,4 +1,6 @@
 import 'package:budget_app/components/dialogbox.dart';
+import 'package:budget_app/components/materialButton.dart';
+import 'package:budget_app/components/textFormField.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -108,5 +110,60 @@ class ViewModel extends ChangeNotifier {
   //Logout
   Future<void> logout() async {
     await _auth.signOut();
+  }
+
+  // Database
+  Future addExpense(BuildContext context) async {
+    final formKey = GlobalKey<FormState>();
+    TextEditingController controllerName = TextEditingController();
+    TextEditingController controllerAmount = TextEditingController();
+    return await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          actionsAlignment: MainAxisAlignment.center,
+          contentPadding: EdgeInsets.all(30.0),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          title: Form(
+              key: formKey,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Textformfield(
+                      text: "Name",
+                      containerWidth: 130,
+                      hintText: "Name",
+                      controller: controllerName,
+                      validator: (text) {
+                        if (text.toString().isEmpty) {
+                          return "Requried";
+                        }
+                      }),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Textformfield(
+                      text: "Amount",
+                      containerWidth: 130,
+                      hintText: "Amount",
+                      controller: controllerAmount,
+                      validator: (amount) {
+                        if (amount.toString().isEmpty) {
+                          return "Requried";
+                        }
+                      })
+                ],
+              )),
+              actions: [
+                Materialbutton(onpressFunction: () async{
+                  if (formKey.currentState!.validate()) {   //give true if the input is correct
+                    
+                  }
+                }, buttontext: "Save", textSize: 16.0)
+              ],
+        );
+      },
+    );
   }
 }
