@@ -115,7 +115,8 @@ class ViewModel extends ChangeNotifier {
     await _auth.signOut();
   }
 
-  // Database
+  // DATABASE
+  // ADD Expense
   Future addExpense(BuildContext context) async {
     final formKey = GlobalKey<FormState>();
     TextEditingController controllerName = TextEditingController();
@@ -172,6 +173,76 @@ class ViewModel extends ChangeNotifier {
                     }).onError(
                       (error, stackTrace) {
                         logger.d("add expense error:$error");
+                        return DialogBox(context, error.toString());
+                      },
+                    );
+                  }
+                  Navigator.pop(context);
+                },
+                buttontext: "Save",
+                textSize: 16.0)
+          ],
+        );
+      },
+    );
+  }
+
+  // ADD income
+  Future addIncome(BuildContext context) async {
+    final formKey = GlobalKey<FormState>();
+    TextEditingController controllerName = TextEditingController();
+    TextEditingController controllerAmount = TextEditingController();
+    return await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          actionsAlignment: MainAxisAlignment.center,
+          contentPadding: EdgeInsets.all(30.0),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          title: Form(
+              key: formKey,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Textformfield(
+                      text: "Name",
+                      containerWidth: 130,
+                      hintText: "Name",
+                      controller: controllerName,
+                      validator: (text) {
+                        if (text.toString().isEmpty) {
+                          return "Requried";
+                        }
+                      }),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Textformfield(
+                      text: "Amount",
+                      containerWidth: 130,
+                      hintText: "Amount",
+                      controller: controllerAmount,
+                      validator: (amount) {
+                        if (amount.toString().isEmpty) {
+                          return "Requried";
+                        }
+                      })
+                ],
+              )),
+          actions: [
+            Materialbutton(
+                onpressFunction: () async {
+                  if (formKey.currentState!.validate()) {
+                    await userCollection
+                        .doc(_auth.currentUser!.uid)
+                        .collection("income")
+                        .add({
+                      "name": controllerName.text,
+                      "amount": controllerAmount.text
+                    }).onError(
+                      (error, stackTrace) {
+                        logger.d("add income error : $error");
                         return DialogBox(context, error.toString());
                       },
                     );

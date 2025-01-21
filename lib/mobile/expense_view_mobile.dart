@@ -56,11 +56,25 @@ class ExpenseViewMobile extends HookConsumerWidget {
               SizedBox(
                 height: 40.0,
                 width: 155.0,
+                // Add expense button
                 child: Materialbutton(
                     onpressFunction: () async {
                       await viewModelProvider.addExpense(context);
                     },
                     buttontext: "+  Add Expense",
+                    textSize: 18.0),
+              ),
+              SizedBox(
+                width: 10.0,
+              ),
+              SizedBox(
+                width: 155.0,
+                height: 40.0,
+                child: Materialbutton(
+                    onpressFunction: () async {
+                      await viewModelProvider.addIncome(context);
+                    },
+                    buttontext: "+  Add income",
                     textSize: 18.0),
               )
             ],
