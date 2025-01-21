@@ -1,6 +1,7 @@
 import 'package:budget_app/components/dialogbox.dart';
 import 'package:budget_app/components/materialButton.dart';
 import 'package:budget_app/components/textFormField.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -13,6 +14,8 @@ final viewModel = ChangeNotifierProvider.autoDispose<ViewModel>(
 
 class ViewModel extends ChangeNotifier {
   final _auth = FirebaseAuth.instance;
+  CollectionReference userCollection =
+      FirebaseFirestore.instance.collection("users");
   bool isSignedIn = false;
   bool isObscure = true;
   var logger = Logger();
@@ -155,13 +158,29 @@ class ViewModel extends ChangeNotifier {
                       })
                 ],
               )),
-              actions: [
-                Materialbutton(onpressFunction: () async{
-                  if (formKey.currentState!.validate()) {   //give true if the input is correct
-                    
+          actions: [
+            Materialbutton(
+                onpressFunction: () async {
+                  if (formKey.currentState!.validate()) {
+                    //give true if the input is correct
+                    await userCollection
+                        .doc(_auth.currentUser!.uid)
+                        .collection("expenses")
+                        .add({
+                      "name": controllerName.text,
+                      "amount": controllerAmount.text
+                    }).onError(
+                      (error, stackTrace) {
+                        logger.d("add expense error:$error");
+                        return DialogBox(context, error.toString());
+                      },
+                    );
                   }
-                }, buttontext: "Save", textSize: 16.0)
-              ],
+                  Navigator.pop(context);
+                },
+                buttontext: "Save",
+                textSize: 16.0)
+          ],
         );
       },
     );
