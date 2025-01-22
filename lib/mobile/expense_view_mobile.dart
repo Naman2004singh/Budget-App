@@ -36,6 +36,7 @@ class ExpenseViewMobile extends HookConsumerWidget {
 
     return SafeArea(
         child: Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.white, size: 30.0),
         backgroundColor: Colors.black,
