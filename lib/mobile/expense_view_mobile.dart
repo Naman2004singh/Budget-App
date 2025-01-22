@@ -6,7 +6,6 @@ import 'package:budget_app/components/totalOutput.dart';
 import 'package:budget_app/model.dart';
 import 'package:budget_app/view_model.dart';
 import 'package:budget_app/components/textTheme.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -34,6 +33,9 @@ class ExpenseViewMobile extends HookConsumerWidget {
       appBar: PreferredSize(
           preferredSize: Size(deviceWidth, 55.0),
           child: MyAppbar(
+            onpress: () {
+              viewModelProvider.reset();
+            },
             title: Poppins(
               text: "Dashboard",
               size: 20.0,

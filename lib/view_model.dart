@@ -290,4 +290,29 @@ class ViewModel extends ChangeNotifier {
       }
     }
   }
+
+  // Reset button
+  Future<void> reset() async {
+    // for expense section
+    await userCollection
+        .doc(_auth.currentUser!.uid)
+        .collection("expense")
+        .get()
+        .then((snapshot) {
+      for (DocumentSnapshot ds in snapshot.docs) {
+        ds.reference.delete();
+      }
+    });
+
+    // for income section
+    await userCollection
+        .doc(_auth.currentUser!.uid)
+        .collection("expense")
+        .get()
+        .then((snapshot) {
+      for (DocumentSnapshot ds in snapshot.docs) {
+        ds.reference.delete();
+      }
+    });
+  }
 }

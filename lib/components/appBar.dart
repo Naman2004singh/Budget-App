@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MyAppbar extends StatelessWidget {
+  final  void Function()? onpress;
   final title;
-  const MyAppbar({super.key, this.title});
+  const MyAppbar({super.key, this.title, required this.onpress});
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +13,7 @@ class MyAppbar extends StatelessWidget {
       centerTitle: true,
       title: title,
       actions: [
-        IconButton(onPressed: () async{
-          ///reset function
-        },
+        IconButton(onPressed: onpress,
          icon: Icon(Icons.refresh))
       ],
     );
