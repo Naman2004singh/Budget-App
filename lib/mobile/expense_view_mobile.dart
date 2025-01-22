@@ -1,10 +1,12 @@
 import 'package:budget_app/components/appBar.dart';
+import 'package:budget_app/components/budgetList.dart';
 import 'package:budget_app/components/drawer.dart';
 import 'package:budget_app/components/materialButton.dart';
 import 'package:budget_app/components/totalOutput.dart';
 import 'package:budget_app/model.dart';
 import 'package:budget_app/view_model.dart';
 import 'package:budget_app/components/textTheme.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -77,6 +79,27 @@ class ExpenseViewMobile extends HookConsumerWidget {
                     buttontext: "+  Add income",
                     textSize: 18.0),
               )
+            ],
+          ),
+          SizedBox(
+            height: 30.0,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              //Expense list
+              Budgetlist(
+                  textHeading: "Expenses",
+                  headingSize: 18.0,
+                  itemcountNumber: viewModelProvider.expenseAmount.length,
+                  budgetName: viewModelProvider.expenseName,
+                  budgetAmount: viewModelProvider.expenseAmount),
+              // Income list
+              Budgetlist(textHeading: "Income", 
+              headingSize: 18.0,
+               itemcountNumber: viewModelProvider.incomeAmount.length, 
+               budgetName: viewModelProvider.incomeName,
+                budgetAmount:viewModelProvider.incomeAmount)
             ],
           )
         ],

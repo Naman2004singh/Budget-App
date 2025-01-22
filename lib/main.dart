@@ -1,4 +1,3 @@
-import 'package:budget_app/mobile/expense_view_mobile.dart';
 import 'package:budget_app/responsive_handler.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -34,7 +33,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Budget App",
       home: ResponsiveHandler(),
-      // home: ExpenseViewMobile(),
     );
   }
 }

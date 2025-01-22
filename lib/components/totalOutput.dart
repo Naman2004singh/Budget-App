@@ -21,6 +21,7 @@ class Totaloutput extends StatelessWidget {
         children: [
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Poppins(
                 text: "Budget left",

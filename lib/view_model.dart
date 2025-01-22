@@ -256,4 +256,24 @@ class ViewModel extends ChangeNotifier {
       },
     );
   }
+
+  // getting the list of data for expenses when there is the change in the database using stream builders
+  void expensesStream() async {
+    await for (var snapshot in userCollection
+        .doc(_auth.currentUser!.uid)
+        .collection("expenses")
+        .snapshots()) {
+      // all the values are reloaded in stream so we use a empty list to store the previous values
+      expenseAmount = [];
+      expenseName = [];
+      // To neglect the duplication of data as stream download the whole data
+      for (var expense in snapshot.docs) {
+        expenseName.add(expense.data()["name"]);
+        expenseAmount.add(expense.data()["amount"]);
+        notifyListeners();
+      }
+    }
+  }
+
+  
 }
