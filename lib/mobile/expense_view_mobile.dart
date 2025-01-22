@@ -10,11 +10,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+bool isLoading = true;
+
 class ExpenseViewMobile extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModelProvider = ref.watch(viewModel);
     final deviceWidth = MediaQuery.of(context).size.width;
+
+    if (isLoading) {
+      viewModelProvider.incomeStream();
+      viewModelProvider.expensesStream();
+      isLoading = false;
+    }
 
     int totalExpense = 0;
     int totalIncome = 0;
@@ -89,17 +97,22 @@ class ExpenseViewMobile extends HookConsumerWidget {
             children: [
               //Expense list
               Budgetlist(
+                  containerWidth: deviceWidth / 2.5,
+                  containerSmallWidth: deviceWidth / 2.7,
                   textHeading: "Expenses",
                   headingSize: 18.0,
                   itemcountNumber: viewModelProvider.expenseAmount.length,
                   budgetName: viewModelProvider.expenseName,
                   budgetAmount: viewModelProvider.expenseAmount),
               // Income list
-              Budgetlist(textHeading: "Income", 
-              headingSize: 18.0,
-               itemcountNumber: viewModelProvider.incomeAmount.length, 
-               budgetName: viewModelProvider.incomeName,
-                budgetAmount:viewModelProvider.incomeAmount)
+              Budgetlist(
+                  containerWidth: deviceWidth / 2.5,
+                  containerSmallWidth: deviceWidth / 2.7,
+                  textHeading: "Income",
+                  headingSize: 18.0,
+                  itemcountNumber: viewModelProvider.incomeAmount.length,
+                  budgetName: viewModelProvider.incomeName,
+                  budgetAmount: viewModelProvider.incomeAmount)
             ],
           )
         ],

@@ -275,5 +275,19 @@ class ViewModel extends ChangeNotifier {
     }
   }
 
-  
+  // getting the list of data for expenses when there is the change in the database using stream builders
+  void incomeStream() async {
+    await for (var snapshot in userCollection
+        .doc(_auth.currentUser!.uid)
+        .collection("income")
+        .snapshots()) {
+      incomeAmount = [];
+      incomeName = [];
+      for (var income in snapshot.docs) {
+        incomeName.add(income.data()["name"]);
+        incomeAmount.add(income.data()["amount"]);
+        notifyListeners();
+      }
+    }
+  }
 }
