@@ -9,6 +9,8 @@ class Budgetlist extends StatelessWidget {
   final budgetAmount;
   final containerWidth;
   final containerSmallWidth;
+  final containerHeight;
+  final smallContainerHeight;
   const Budgetlist(
       {super.key,
       required this.textHeading,
@@ -17,14 +19,14 @@ class Budgetlist extends StatelessWidget {
       required this.budgetName,
       required this.containerWidth,
       required this.containerSmallWidth,
-      required this.budgetAmount});
+      required this.budgetAmount, this.containerHeight, this.smallContainerHeight});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
       width: containerWidth,
-      height: 250.0,
+      height: containerHeight ?? 250.0,
       decoration: BoxDecoration(
           color: Colors.black, borderRadius: BorderRadius.circular(15.0)),
       child: Column(
@@ -44,7 +46,7 @@ class Budgetlist extends StatelessWidget {
           ),
           Container(
             width: containerSmallWidth,
-            height: 170.0,
+            height: smallContainerHeight ?? 170.0,
             padding: EdgeInsets.all(12.0),
             decoration: BoxDecoration(
               color: Colors.black,
