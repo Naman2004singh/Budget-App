@@ -80,16 +80,15 @@ class LoginViewMobile extends HookConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 // Registration button
-                SizedBox(
-                    height: 50.0,
-                    width: 150.0,
-                    child: Materialbutton(
-                        onpressFunction: () async {
-                          await viewModelProvider.RegisterUser(context,
-                              _emailController.text, _passwordController.text);
-                        },
-                        buttontext: "Register",
-                        textSize: 25)),
+                Materialbutton(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
+                    onpressFunction: () async {
+                      await viewModelProvider.RegisterUser(context,
+                          _emailController.text, _passwordController.text);
+                    },
+                    buttontext: "Register",
+                    textSize: 25.0),
                 SizedBox(
                   width: 20.0,
                 ),
@@ -97,17 +96,15 @@ class LoginViewMobile extends HookConsumerWidget {
                 SizedBox(
                   width: 20.0,
                 ),
-                SizedBox(
-                  height: 50.0,
-                  width: 150.0,
-                  child: Materialbutton(
-                      onpressFunction: () async {
-                        await viewModelProvider.LoginUser(context,
-                            _emailController.text, _passwordController.text);
-                      },
-                      buttontext: "Login",
-                      textSize: 25),
-                ),
+                Materialbutton(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
+                    onpressFunction: () async {
+                      await viewModelProvider.LoginUser(context,
+                          _emailController.text, _passwordController.text);
+                    },
+                    buttontext: "Login",
+                    textSize: 25.0),
               ],
             ),
             SizedBox(

@@ -98,7 +98,7 @@ class LoginViewWeb extends HookConsumerWidget {
                                   _passwordController.text);
                             },
                             buttontext: "Register",
-                            textSize: 25)),
+                            textSize: 25.0)),
                     SizedBox(
                       width: 20.0,
                     ),
@@ -117,7 +117,7 @@ class LoginViewWeb extends HookConsumerWidget {
                                 _passwordController.text);
                           },
                           buttontext: "Login",
-                          textSize: 25),
+                          textSize: 25.0),
                     ),
                   ],
                 ),

@@ -27,7 +27,7 @@ class OpenSans extends StatelessWidget {
 
 class Pacifico extends StatelessWidget {
   final String text;
-  final double size;
+  final size;
   final color;
   const Pacifico(
       {super.key, required this.text, required this.size, this.color});

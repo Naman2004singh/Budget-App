@@ -11,6 +11,7 @@ class ResponsiveHandler extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModelProvider = ref.watch(viewModel);
     viewModelProvider.isLoggedIn();
+    // print("Rebuld check");
 
     if (viewModelProvider.isSignedIn == true) {
       return LayoutBuilder(

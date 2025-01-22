@@ -44,7 +44,7 @@ class ExpenseViewWeb extends HookConsumerWidget {
         centerTitle: true,
         title: OpenSans(
           text: "Dashboard",
-          size: 25,
+          size: 25.0,
           color: Colors.white,
         ),
         actions: [
@@ -95,7 +95,7 @@ class ExpenseViewWeb extends HookConsumerWidget {
                 ],
               ),
               Totaloutput(
-                  deviceWidth: 450,
+                  deviceWidth: 450.0,
                   text1: budgetLeft.toString(),
                   text2: totalExpense.toString(),
                   text3: totalIncome.toString())

@@ -4,6 +4,7 @@ import 'package:budget_app/components/textFormField.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logger/logger.dart';
@@ -126,7 +127,8 @@ class ViewModel extends ChangeNotifier {
       builder: (context) {
         return AlertDialog(
           actionsAlignment: MainAxisAlignment.center,
-          contentPadding: EdgeInsets.all(30.0),
+          contentPadding:
+              EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           title: Form(
@@ -136,7 +138,7 @@ class ViewModel extends ChangeNotifier {
                 children: [
                   Textformfield(
                       text: "Name",
-                      containerWidth: 130,
+                      containerWidth: 120.0,
                       hintText: "Name",
                       controller: controllerName,
                       validator: (text) {
@@ -148,8 +150,9 @@ class ViewModel extends ChangeNotifier {
                     width: 10.0,
                   ),
                   Textformfield(
+                      keyboardInput: TextInputType.number,
                       text: "Amount",
-                      containerWidth: 130,
+                      containerWidth: 120.0,
                       hintText: "Amount",
                       controller: controllerAmount,
                       validator: (amount) {
@@ -176,8 +179,8 @@ class ViewModel extends ChangeNotifier {
                         return DialogBox(context, error.toString());
                       },
                     );
+                    Navigator.pop(context);
                   }
-                  Navigator.pop(context);
                 },
                 buttontext: "Save",
                 textSize: 16.0)
@@ -197,7 +200,8 @@ class ViewModel extends ChangeNotifier {
       builder: (context) {
         return AlertDialog(
           actionsAlignment: MainAxisAlignment.center,
-          contentPadding: EdgeInsets.all(30.0),
+          contentPadding:
+              EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           title: Form(
@@ -207,7 +211,7 @@ class ViewModel extends ChangeNotifier {
                 children: [
                   Textformfield(
                       text: "Name",
-                      containerWidth: 130,
+                      containerWidth: 120.0,
                       hintText: "Name",
                       controller: controllerName,
                       validator: (text) {
@@ -219,8 +223,9 @@ class ViewModel extends ChangeNotifier {
                     width: 10.0,
                   ),
                   Textformfield(
+                      keyboardInput: TextInputType.number,
                       text: "Amount",
-                      containerWidth: 130,
+                      containerWidth: 120.0,
                       hintText: "Amount",
                       controller: controllerAmount,
                       validator: (amount) {
@@ -246,8 +251,8 @@ class ViewModel extends ChangeNotifier {
                         return DialogBox(context, error.toString());
                       },
                     );
+                    Navigator.pop(context);
                   }
-                  Navigator.pop(context);
                 },
                 buttontext: "Save",
                 textSize: 16.0)

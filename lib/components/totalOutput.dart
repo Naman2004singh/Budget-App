@@ -6,7 +6,12 @@ class Totaloutput extends StatelessWidget {
   final text1;
   final text2;
   final text3;
-  const Totaloutput({super.key, required this.deviceWidth, required this.text1, this.text2, required this.text3});
+  const Totaloutput(
+      {super.key,
+      required this.deviceWidth,
+      required this.text1,
+      this.text2,
+      required this.text3});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +20,7 @@ class Totaloutput extends StatelessWidget {
           color: Colors.black, borderRadius: BorderRadius.circular(25.0)),
       padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
       width: deviceWidth / 1.5,
-      height: 240,
+      height: 240.0,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -25,17 +30,17 @@ class Totaloutput extends StatelessWidget {
             children: [
               Poppins(
                 text: "Budget left",
-                size: 15,
+                size: 15.0,
                 color: Colors.white,
               ),
               Poppins(
                 text: "Total expense",
-                size: 15,
+                size: 15.0,
                 color: Colors.white,
               ),
               Poppins(
                 text: "Total income",
-                size: 15,
+                size: 15.0,
                 color: Colors.white,
               )
             ],
@@ -53,17 +58,17 @@ class Totaloutput extends StatelessWidget {
             children: [
               Poppins(
                 text: text1,
-                size: 15,
+                size: 15.0,
                 color: Colors.white,
               ),
               Poppins(
                 text: text2,
-                size: 15,
+                size: 15.0,
                 color: Colors.white,
               ),
               Poppins(
                 text: text3,
-                size: 15,
+                size: 15.0,
                 color: Colors.white,
               )
             ],

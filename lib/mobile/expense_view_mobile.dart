@@ -43,7 +43,7 @@ class ExpenseViewMobile extends HookConsumerWidget {
         centerTitle: true,
         title: OpenSans(
           text: "Dashboard",
-          size: 25,
+          size: 25.0,
           color: Colors.white,
         ),
         actions: [
@@ -79,7 +79,7 @@ class ExpenseViewMobile extends HookConsumerWidget {
             children: [
               SizedBox(
                 height: 40.0,
-                width: 155.0,
+                width: 163.0,
                 // Add expense button
                 child: Materialbutton(
                     onpressFunction: () async {

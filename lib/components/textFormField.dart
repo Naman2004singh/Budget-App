@@ -10,13 +10,15 @@ class Textformfield extends StatelessWidget {
   final TextEditingController controller;
   final validator;
   final digitsOnly;
+  final keyboardInput;
   const Textformfield(
       {super.key,
       required this.text,
       required this.containerWidth,
       required this.hintText,
       required this.controller,
-      required this.validator, this.digitsOnly});
+      required this.validator,
+      this.digitsOnly, this.keyboardInput});
 
   @override
   Widget build(BuildContext context) {
@@ -24,33 +26,34 @@ class Textformfield extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         OpenSans(text: text, size: 13.0),
-        SizedBox(height: 5.0,),
+        SizedBox(
+          height: 5.0,
+        ),
         SizedBox(
           width: containerWidth,
           child: TextFormField(
             validator: validator,
             controller: controller,
+            keyboardType: keyboardInput ?? TextInputType.text,
             decoration: InputDecoration(
-              hintText: hintText,
-              hintStyle:GoogleFonts.poppins(fontSize: 14.0),
-              errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: BorderSide(color: Colors.red)
-              ),
-              focusedErrorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: BorderSide(color: Colors.red)
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: BorderSide(color: Colors.tealAccent),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: BorderSide(color: Colors.teal)
-              )
-            ),
-            inputFormatters: digitsOnly!=null?[FilteringTextInputFormatter.digitsOnly]:[],
+                hintText: hintText,
+                hintStyle: GoogleFonts.poppins(fontSize: 14.0),
+                errorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(color: Colors.red)),
+                focusedErrorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(color: Colors.red)),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: BorderSide(color: Colors.tealAccent),
+                ),
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(color: Colors.teal))),
+            inputFormatters: digitsOnly != null
+                ? [FilteringTextInputFormatter.digitsOnly]
+                : [],
           ),
         )
       ],
