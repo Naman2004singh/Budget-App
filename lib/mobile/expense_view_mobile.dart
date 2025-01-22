@@ -1,11 +1,9 @@
-import 'package:budget_app/components/appBar.dart';
 import 'package:budget_app/components/budgetList.dart';
 import 'package:budget_app/components/drawer.dart';
 import 'package:budget_app/components/materialButton.dart';
-import 'package:budget_app/components/totalOutput.dart';
-import 'package:budget_app/model.dart';
-import 'package:budget_app/view_model.dart';
 import 'package:budget_app/components/textTheme.dart';
+import 'package:budget_app/components/totalOutput.dart';
+import 'package:budget_app/view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -25,23 +23,36 @@ class ExpenseViewMobile extends HookConsumerWidget {
 
     int totalExpense = 0;
     int totalIncome = 0;
+
+    for (int i = 0; i < viewModelProvider.expenseAmount.length; i++) {
+      totalExpense =
+          totalExpense + int.parse(viewModelProvider.expenseAmount[i]);
+    }
+
+    for (int i = 0; i < viewModelProvider.incomeAmount.length; i++) {
+      totalIncome = totalIncome + int.parse(viewModelProvider.incomeAmount[i]);
+    }
     int budgetLeft = totalIncome - totalExpense;
-    TotalExpenseCalculate(context, ref, totalExpense);
-    TotalIncomeCalculate(context, ref, totalIncome);
+
     return SafeArea(
         child: Scaffold(
-      appBar: PreferredSize(
-          preferredSize: Size(deviceWidth, 55.0),
-          child: MyAppbar(
-            onpress: () {
-              viewModelProvider.reset();
-            },
-            title: Poppins(
-              text: "Dashboard",
-              size: 20.0,
-              color: Colors.white,
-            ),
-          )),
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white, size: 30.0),
+        backgroundColor: Colors.black,
+        centerTitle: true,
+        title: OpenSans(
+          text: "Dashboard",
+          size: 25,
+          color: Colors.white,
+        ),
+        actions: [
+          IconButton(
+              onPressed: () async {
+                await viewModelProvider.reset();
+              },
+              icon: Icon(Icons.refresh))
+        ],
+      ),
       drawer: MyDrawer(),
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),

@@ -296,7 +296,7 @@ class ViewModel extends ChangeNotifier {
     // for expense section
     await userCollection
         .doc(_auth.currentUser!.uid)
-        .collection("expense")
+        .collection("expenses")
         .get()
         .then((snapshot) {
       for (DocumentSnapshot ds in snapshot.docs) {
@@ -307,7 +307,7 @@ class ViewModel extends ChangeNotifier {
     // for income section
     await userCollection
         .doc(_auth.currentUser!.uid)
-        .collection("expense")
+        .collection("income")
         .get()
         .then((snapshot) {
       for (DocumentSnapshot ds in snapshot.docs) {
