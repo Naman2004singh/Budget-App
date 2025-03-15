@@ -52,7 +52,7 @@ class MyDrawer extends HookConsumerWidget {
               IconButton(
                   onPressed: () async {
                     await launchUrl(Uri.parse(
-                        "https://www.instagram.com/its_namansingh29/"));
+                        "https://www.instagram.com"));
                   },
                   icon: FaIcon(
                     FontAwesomeIcons.instagram,
@@ -60,7 +60,7 @@ class MyDrawer extends HookConsumerWidget {
                   )),
               IconButton(
                   onPressed: () async {
-                    await launchUrl(Uri.parse("https://x.com/Naman2singh9/"));
+                    await launchUrl(Uri.parse("https://x.com"));
                   },
                   icon: FaIcon(FontAwesomeIcons.twitter))
             ],
